@@ -57,3 +57,37 @@ h1 {
     margin-top: 10px;
 }
 
+
+/* MAIN CONTAINER */
+#mainContainer {
+    flex-basis: 70%;
+    padding: 20px;
+}
+
+#currentWeather h2,
+#forecast h2 {
+    margin-top: 0;
+}
+
+
+/* CURRENT WEATHER */
+
+
+
+/* FORECAST */
+#forecast {
+    padding: 20px;
+}
+
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 768px) {
+    #wholeContainer {
+        flex-direction: column;
+    }
+
+    #searchContainer,
+    #mainContainer {
+        flex-basis: 100%;
+    }
+}
