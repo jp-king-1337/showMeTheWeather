@@ -5,6 +5,7 @@
     padding: 0;
 }
 
+
 /* BODY STYLES */
 body {
     font-family: sans-serif;
@@ -12,14 +13,47 @@ body {
     padding: 20px;
 }
 
-/* HEADER STYLES */
-header {
-    background-color: blue;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 20px;
+#wholeContainer {
+    display:flex;
 }
 
-h1 {
-    font-size: 28px;
+
+/* HEADER STYLES */
+header {
+    background-color: #5500ff;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
+
+/* Not sure I want this. */
+h1 {
+    /* font-size: 28px; */
+}
+
+
+/* SEARCH CONTAINER */
+#searchContainer {
+    flex: 0 0 250px;
+    background-color: #fff;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+#searchForm {
+    margin-bottom: 10px;
+}
+
+#cityInput,
+#submitButton {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+#submitButton {
+    background-color: #0000ff;
+    color: #fff;
+    margin-top: 10px;
+}
+
