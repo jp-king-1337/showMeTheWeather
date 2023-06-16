@@ -7,7 +7,35 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h1>something to see</h1>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <div id="main-container">
+        <aside id="search-container">
+            <form id="search-form">
+                <input type="text" id="city-input" placeholder="Enter A City">
+                <button type="submit">Search</button>
+            </form>
+        </aside>
+
+        <main>
+            <section id="currentWeather">
+                <h2>City & Date</h2>
+                <div id="cityName"></div>
+                <div id="date"></div>
+                <div id="weatherIcon"></div>
+                <div id="temperature"></div>
+                <div id="humidity"></div>
+                <div id="windSpeed"></div>
+            </section>
+
+            <section id="forecast">
+                <h2>5-Day Forecast:</h2>
+                <div id="forecastContainer"></div>
+            </section>
+        </main>
+    </div>
 
 
     <script src="assets/js/script.js"></script>
