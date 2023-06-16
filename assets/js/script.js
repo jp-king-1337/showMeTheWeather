@@ -6,26 +6,29 @@ var url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=
 
 
 fetch(url)
+    .then(function (res) {
+        return res.json();
+    })
     .then(function (weatherData) {
         console.log("weatherTest: ", weatherData);
 
         // Placeholder numbers until I get the whole array of 40 or whatever
         var forecast = weatherData.list.slice(0, 5);
 
-        forecast.forEach(function (forecast)) {
+        forecast.forEach(function (forecast) {
             var date = forecastEntry.dt_txt;
             var icon = forecastEntry.weather[0].icon;
-            var temperature = forecast.main.temp;
+            var temperature = forecastEntry.main.temp;
             var windSpeed = forecastEntry.wind.windSpeed;
             var humidity = forecastEntry.main.humidity;
 
             console.log("Date: ", date);
-            console.log("icon: ", icon);
-            console.log("temperature: ", temperature);
-            console.log("windSpeed: ", windSpeed);
-            console.log("humidity: ", humidity);
-        }
-
-
-
+            console.log("Icon: ", icon);
+            console.log("Temperature: ", temperature);
+            console.log("Wind Speed: ", windSpeed);
+            console.log("Humidity: ", humidity);
+        });
+    })
+    .catch(function (error) {
+        console.log(error);
     });
