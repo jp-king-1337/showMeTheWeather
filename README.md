@@ -2,6 +2,7 @@
 
 ## Description
 
+This is a weather forecasting app. It shows a 5-day forecast for the location specified by the user input in the text box.
 
 
 ## Table of Contents
@@ -19,6 +20,8 @@ git clone git@github.com:jp-king-1337/showMeTheWeather.git
 
 
 ## Usage
+
+This project is to be graded as part of my participation in the Rutgers Coding Bootcamp.
 
 [Deployed Link](https://jp-king-1337.github.io/showMeTheWeather/)
 
