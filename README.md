@@ -3,6 +3,7 @@
 ## Description
 
 
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -13,10 +14,15 @@
 
 ## Installation
 
+You can clone this github repo with the command line:
+git clone git@github.com:jp-king-1337/showMeTheWeather.git
 
 
 ## Usage
 
+[Deployed Link](https://jp-king-1337.github.io/showMeTheWeather/)
+
+Screenshots coming soon!
 
 
 ## Credits
