@@ -3,6 +3,7 @@ var weatherKey = "930b816eb4fa5606fcbc2d95d44231f2";
 var latitude = 40.0027;
 var longitude = -76.3547;
 var url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&appid=${weatherKey}`;
+var forecastUrl;
 
 // Variables for necessary elements
 var searchForm = document.getElementById("searchForm");
@@ -62,12 +63,12 @@ function fetchWeatherData(city) {
 
             cityNameEl.innerText = weatherData.name;
             dateEl.innerText = getCurrentDate();
-            weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="Weather Icon">`;
+            // weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="Weather Icon">`;
             temperatureEl.textContent = "Temperature: " + weatherData.main.temp + "°F";
             humidityEl.textContent = "Humidity: " + weatherData.main.humidity + "%";
             windSpeedEl.textContent = "Wind Speed: " + weatherData.wind.speed + " mph";
 
-            var forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${weatherKey}`;
+            forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${weatherKey}`;
 
             fetchForecastData(forecastUrl);
         })
