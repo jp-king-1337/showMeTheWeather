@@ -47,6 +47,11 @@ var forecastEl = document.getElementById("forecast");
 //     });
 
 // Function to fetch data based on city
+
+function getCurrentDate() {
+    return dayjs().format("MM/DD/YYYY");
+  }
+
 function fetchWeatherData(city) {
     fetch(url)
         .then(function (res) {
