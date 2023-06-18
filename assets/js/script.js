@@ -70,14 +70,14 @@ function fetchWeatherData(city) {
 }
 
 function fetchForecastData(city) {
-    fetch(url)
+    fetch(forecastUrl)
         .then(function (res) {
             return res.json();
         })
         .then(function (forecastData) {
-            console.log("forecastData: ", forecastData)
+            console.log("forecastData: ", forecastData);
 
-            forecast.innerHTML = "";
+            forecastEl.innerHTML = "";
 
             var forecastEntries = forecastData.list.slice(0, 5);
             forecastEntries.forEach(function (forecastEntry) {
@@ -86,23 +86,22 @@ function fetchForecastData(city) {
                 var forecastTemperature = forecastEntry.main.temp;
                 var forecastWindSpeed = forecastEntry.wind.speed;
                 var forecastHumidity = forecastEntry.main.humidity;
-            })
 
-            var forecastItem = document.createElement("div");
-            forecastItem.classname = "forecast-item";
-            forecastItem.innerHTML = `
-            <div>Date: ${forecastDate}</div>
-            <div><img src="https://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather Icon"></div>
-            <div>Temperature: ${forecastTemperature}°F</div>
-            <div>Wind Speed: ${forecastWindSpeed} mph</div>
-            <div>Humidity: ${forecastHumidity}%</div>`;
+                var forecastItem = document.createElement("div");
+                forecastItem.className = "forecast-item";
+                forecastItem.innerHTML = `
+                    <div>Date: ${forecastDate}</div>
+                    <div><img src="https://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather Icon"></div>
+                    <div>Temperature: ${forecastTemperature}°F</div>
+                    <div>Wind Speed: ${forecastWindSpeed} mph</div>
+                    <div>Humidity: ${forecastHumidity}%</div>`;
 
-            forecastEl.appendChild(forecastItem);
+                forecastEl.appendChild(forecastItem);
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
         });
-})
-        .catch (function (error) {
-    console.log(error);
-});
 }
 
 
