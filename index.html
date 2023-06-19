@@ -18,11 +18,12 @@
                 <input type="text" id="cityInput" placeholder="Enter A City">
                 <button type="submit" id="submitButton">Search</button>
             </form>
+            <div id="searchHistory" class="search-history"></div>
         </aside>
 
         <main id="mainContainer">
             <section id="currentWeather">
-                <h2>City & Date</h2>
+                <!-- <h2>Today</h2> -->
                 <div id="cityName"></div>
                 <div id="date"></div>
                 <div id="weatherIcon"></div>
@@ -32,13 +33,14 @@
             </section>
 
             <section id="forecast">
-                <h2>5-Day Forecast:</h2>
+                <h3>5-Day Forecast:</h2>
                 <div id="forecastContainer"></div>
             </section>
         </main>
     </div>
 
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
