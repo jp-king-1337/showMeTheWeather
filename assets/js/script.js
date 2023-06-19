@@ -15,6 +15,17 @@ var windSpeedEl = document.getElementById("windSpeed");
 // Also container to hold forecast
 var forecastEl = document.getElementById("forecast");
 
+// Need the searchHistory to be an array
+var searchHistoryArray = [];
+
+// In order to use it in localStorage
+var savedSearchHistory = localStorage.getItem("searchHistoryArray");
+if (savedSearchHistory) {
+    searchHistory = JSON.parse(savedSearchHistory);
+    displaySearchHistory();
+}
+
+
 
 searchForm.addEventListener("submit", formSubmit);
 
@@ -44,10 +55,22 @@ function fetchWeatherData(city) {
             forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${weatherKey}`;
 
             fetchForecastData(forecastUrl);
+            addToSearchHistory(city);
         })
         .catch(function (error) {
             console.log(error);
         });
+}
+
+
+function addToSearchHistory(city) {
+    if (!searchHistory.includes(city)) {
+        searchHistory.push(city);
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+        displaySearchHistory();
+    }
+
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 
 
