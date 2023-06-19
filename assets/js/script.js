@@ -21,7 +21,7 @@ var searchHistoryArray = [];
 // In order to use it in localStorage
 var savedSearchHistory = localStorage.getItem("searchHistoryArray");
 if (savedSearchHistory) {
-    searchHistoryArray = JSON.parse(savedSearchHistoryArray);
+    searchHistoryArray = JSON.parse(savedSearchHistory);
     displaySearchHistory();
 }
 
