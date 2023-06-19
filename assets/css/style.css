@@ -14,7 +14,7 @@ body {
 }
 
 #wholeContainer {
-    display:flex;
+    display: flex;
 }
 
 
@@ -77,6 +77,20 @@ header {
 /* FORECAST */
 #forecast {
     padding: 20px;
+}
+
+#forecastContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.forecast-item {
+    flex-basis: calc(20% - 20px);
+    margin: 10px;
+    padding: 10px;
+    border: 1 px solid #ccc;
+    text-align: center;
+    background-color: #24245235;
 }
 
 
