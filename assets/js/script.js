@@ -101,6 +101,7 @@ function fetchForecastData(url) {
 
             for (var i = 0; i < 5; i++) {
                 var nextDate = dayjs(currentDate).add(i + 1, "day").format("YYYY-MM-DD");
+                forecastDates.push(nextDate);
             }
 
             forecastEntries.forEach(function (forecastEntry) {
