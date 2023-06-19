@@ -80,6 +80,21 @@ header {
 }
 
 
+/* SEARCH HISTORY */
+.search-history {
+    margin-top: 10px;
+}
+
+.city-item {
+    border: 1px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+    background-color: lightgrey;
+}
+
+
 /* RESPONSIVE LAYOUT */
 @media (max-width: 768px) {
     #wholeContainer {
