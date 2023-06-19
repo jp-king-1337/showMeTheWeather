@@ -137,7 +137,3 @@ function displaySearchHistory() {
     }
 }
 
-
-
-
-fetchWeatherData();
