@@ -94,8 +94,12 @@ function fetchForecastData(city) {
             forecastContainerEl.innerHTML = "";
 
             var forecastEntries = forecastData.list.slice(0, 5);
-            forecastEntries.forEach(function (forecastEntry) {
-                var forecastDate = forecastEntry.dt_txt;
+            var filteredForecastsByNoon = forecastEntries.filter(function (forecastentry) {
+                return forecastentry.dt_txt.includes("12:00:00")
+            });
+            
+            filteredForecastsByNoon.forEach(function (forecastEntry) {
+                var forecastDate = dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY");
                 var forecastIcon = forecastEntry.weather[0].icon;
                 var forecastTemperature = forecastEntry.main.temp;
                 var forecastWindSpeed = forecastEntry.wind.speed;
