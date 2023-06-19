@@ -13,7 +13,7 @@ var temperatureEl = document.getElementById("temperature");
 var humidityEl = document.getElementById("humidity");
 var windSpeedEl = document.getElementById("windSpeed");
 // Also container to hold forecast
-var forecastEl = document.getElementById("forecast");
+var forecastContainerEl = document.getElementById("forecastContainer");
 
 // Need the searchHistory to be an array
 var searchHistoryArray = [];
@@ -45,6 +45,15 @@ function fetchWeatherData(city) {
         .then(function (weatherData) {
             console.log("weatherData: ", weatherData);
 
+            // Clear currentWeather section
+            cityNameEl.innerText = "";
+            dateEl.innerText = "";
+            weatherIconEl.innerHTML = "";
+            temperatureEl.textContent = "";
+            humidityEl.textContent = "";
+            windSpeedEl.textContent = "";
+
+            // Rewrite it
             cityNameEl.innerText = weatherData.name;
             dateEl.innerText = getCurrentDate();
             weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="Weather Icon">`;
@@ -82,7 +91,7 @@ function fetchForecastData(city) {
         .then(function (forecastData) {
             console.log("forecastData: ", forecastData);
 
-            forecastEl.innerHTML = "";
+            forecastContainerEl.innerHTML = "";
 
             var forecastEntries = forecastData.list.slice(0, 5);
             forecastEntries.forEach(function (forecastEntry) {
@@ -101,7 +110,7 @@ function fetchForecastData(city) {
                     <div>Wind Speed: ${forecastWindSpeed} mph</div>
                     <div>Humidity: ${forecastHumidity}%</div>`;
 
-                forecastEl.appendChild(forecastItem);
+                forecastContainerEl.appendChild(forecastItem);
             });
         })
         .catch(function (error) {
