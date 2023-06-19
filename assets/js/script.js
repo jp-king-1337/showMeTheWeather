@@ -3,7 +3,7 @@ var weatherKey = "930b816eb4fa5606fcbc2d95d44231f2";
 var url;
 var forecastUrl;
 
-// Variables for necessary elements
+// Element variables
 var searchForm = document.getElementById("searchForm");
 var cityInput = document.getElementById("cityInput");
 var cityNameEl = document.getElementById("cityName");
@@ -12,20 +12,15 @@ var weatherIconEl = document.getElementById("weatherIcon");
 var temperatureEl = document.getElementById("temperature");
 var humidityEl = document.getElementById("humidity");
 var windSpeedEl = document.getElementById("windSpeed");
-// Also container to hold forecast
 var forecastContainerEl = document.getElementById("forecastContainer");
 
-// Need the searchHistory to be an array
+// Need the searchHistory to be an array which can be saved to localStorage
 var searchHistoryArray = [];
-
-// In order to use it in localStorage
 var savedSearchHistory = localStorage.getItem("searchHistoryArray");
 if (savedSearchHistory) {
     searchHistoryArray = JSON.parse(savedSearchHistory);
     displaySearchHistory();
 }
-
-
 
 searchForm.addEventListener("submit", formSubmit);
 
@@ -89,50 +84,38 @@ function fetchForecastData(url) {
             return res.json();
         })
         .then(function (forecastData) {
-            console.log("forecastData: ", forecastData);
+            // console.log("forecastData: ", forecastData);
 
             forecastContainerEl.innerHTML = "";
-
-            var forecastEntries = forecastData.list.slice(0, 5);
-            // var filteredForecastsByNoon = forecastEntries.filter(function (forecastEntry) {
-            //     return forecastEntry.dt_txt.includes("12:00:00")
-            // });
-
+            // THIS IS THE MAJOR CHANGE
+            var forecastEntries = forecastData.list
             var nextFiveDays = [];
 
-            for (var i = 0; i < forecastEntries.length; i += 8) {
-                var forecastEntry = forecastEntries[i];
-                var forecastTime = forecastEntry.dt_txt.split(" ")[1];
+            var currentDate = dayjs().format("YYYY-MM-DD");
+            var forecastDates = []
 
-                if (forecastTime === "12:00:00") {
+            for (var i = 0; i < 5; i++) {
+                var nextDate = dayjs(currentDate).add(i + 1, "day").format("YYYY-MM-DD");
+                forecastDates.push(nextDate);
+            }
+
+            forecastEntries.forEach(function (forecastEntry) {
+                var forecastDateTime = forecastEntry.dt_txt;
+                var forecastDate = forecastDateTime.split(" ")[0];
+
+                if (forecastDates.includes(forecastDate) && forecastDateTime.includes("12:00:00")) {
                     var forecastItem = {
-                        date: dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY"),
+                        date: dayjs(forecastDateTime).format("DD/MM/YYYY"),
                         icon: forecastEntry.weather[0].icon,
                         temperature: forecastEntry.main.temp,
                         windSpeed: forecastEntry.wind.speed,
-                        humidity: forecastEntry.main.humidity
+                        humidity: forecastEntry.main.humidity,
                     };
                     nextFiveDays.push(forecastItem);
                 }
-            }
-
-            // filteredForecastsByNoon.slice(0, 5).map(function (forecastEntry) {
-            //     return {
-            //         date: dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY"),
-            //         icon: forecastEntry.weather[0].icon,
-            //         temperature: forecastEntry.main.temp,
-            //         windSpeed: forecastEntry.wind.speed,
-            //         humidity: forecastEntry.main.humidity
-            //     };
-            // });
+            });
 
             nextFiveDays.forEach(function (forecastEntry) {
-                // var forecastDate = dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY");
-                // var forecastIcon = forecastEntry.weather[0].icon;
-                // var forecastTemperature = forecastEntry.main.temp;
-                // var forecastWindSpeed = forecastEntry.wind.speed;
-                // var forecastHumidity = forecastEntry.main.humidity;
-
                 var forecastItem = document.createElement("div");
                 forecastItem.className = "forecast-item";
                 forecastItem.innerHTML = `
