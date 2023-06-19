@@ -18,6 +18,8 @@ var windSpeedEl = document.getElementById("windSpeed");
 var forecastEl = document.getElementById("forecast");
 
 
+searchForm.addEventListener("submit", formSubmit);
+
 
 fetch(url)
     .then(function (res) {
