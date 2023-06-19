@@ -21,7 +21,7 @@ var searchHistoryArray = [];
 // In order to use it in localStorage
 var savedSearchHistory = localStorage.getItem("searchHistoryArray");
 if (savedSearchHistory) {
-    searchHistory = JSON.parse(savedSearchHistory);
+    searchHistoryArray = JSON.parse(savedSearchHistoryArray);
     displaySearchHistory();
 }
 
@@ -64,13 +64,13 @@ function fetchWeatherData(city) {
 
 
 function addToSearchHistory(city) {
-    if (!searchHistory.includes(city)) {
-        searchHistory.push(city);
-        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    if (!searchHistoryArray.includes(city)) {
+        searchHistoryArray.push(city);
+        localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
         displaySearchHistory();
     }
 
-    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
 }
 
 
@@ -125,8 +125,8 @@ function displaySearchHistory() {
     searchHistoryEl.innerHTML = "";
 
     // Make HTML elements for the previous cities
-    for (var i = 0; i < searchHistory.length; i++) {
-        var city = searchHistory[i];
+    for (var i = 0; i < searchHistoryArray.length; i++) {
+        var city = searchHistoryArray[i];
         var cityItem = document.createElement("div");
         cityItem.innerText = city;
         cityItem.classList.add("city-item");
