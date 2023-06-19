@@ -19,33 +19,33 @@ var forecastEl = document.getElementById("forecast");
 
 
 
-// fetch(url)
-//     .then(function (res) {
-//         return res.json();
-//     })
-//     .then(function (weatherData) {
-//         console.log("weatherTest: ", weatherData);
+fetch(url)
+    .then(function (res) {
+        return res.json();
+    })
+    .then(function (weatherData) {
+        console.log("weatherTest: ", weatherData);
 
-//         // Placeholder numbers until I get the whole array of 40 or whatever
-//         var forecast = weatherData.list.slice(0, 5);
+        // Placeholder numbers until I get the whole array of 40 or whatever
+        var forecast = weatherData.list.slice(0, 5);
 
-//         forecast.forEach(function (forecast) {
-//             var date = forecastEntry.dt_txt;
-//             var icon = forecastEntry.weather[0].icon;
-//             var temperature = forecastEntry.main.temp;
-//             var windSpeed = forecastEntry.wind.windSpeed;
-//             var humidity = forecastEntry.main.humidity;
+        forecast.forEach(function (forecast) {
+            var date = forecastEntry.dt_txt;
+            var icon = forecastEntry.weather[0].icon;
+            var temperature = forecastEntry.main.temp;
+            var windSpeed = forecastEntry.wind.windSpeed;
+            var humidity = forecastEntry.main.humidity;
 
-//             console.log("Date: ", date);
-//             console.log("Icon: ", icon);
-//             console.log("Temperature: ", temperature);
-//             console.log("Wind Speed: ", windSpeed);
-//             console.log("Humidity: ", humidity);
-//         });
-//     })
-//     .catch(function (error) {
-//         console.log(error);
-//     });
+            console.log("Date: ", date);
+            console.log("Icon: ", icon);
+            console.log("Temperature: ", temperature);
+            console.log("Wind Speed: ", windSpeed);
+            console.log("Humidity: ", humidity);
+        });
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 
 // Function to fetch data based on city
 
@@ -55,7 +55,9 @@ function getCurrentDate() {
 
 
 function fetchWeatherData(city) {
-    fetch(url)
+    var weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${weatherKey}`;
+
+    fetch(weatherUrl)
         .then(function (res) {
             return res.json();
         })
@@ -125,7 +127,24 @@ function formSubmit(event) {
 }
 
 
+function displaySearchHistory() {
+    var searchHistoryEl = document.getElementById("searchHistory");
+    searchHistoryEl.innerHTML = "";
+
+    // Make HTML elements for the previous cities
+    for (var i = 0; i < searchHistory.length; i++) {
+        var city = searchHistory[i];
+        var cityItem = document.createElement("div");
+        cityItem.innerText = city;
+        cityItem.classList.add("city-item");
+        cityItem.addEventListener("click", function () {
+            fetchWeatherData(this.innerText);
+        });
+        searchHistoryEl.appendChild(cityItem);
+    }
+}
 
 
 
-fetchWeatherData(Chicago);
+
+fetchWeatherData();
