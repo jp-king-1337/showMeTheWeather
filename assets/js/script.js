@@ -63,7 +63,7 @@ function fetchWeatherData(city) {
 
             cityNameEl.innerText = weatherData.name;
             dateEl.innerText = getCurrentDate();
-            // weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="Weather Icon">`;
+            weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png" alt="Weather Icon">`;
             temperatureEl.textContent = "Temperature: " + weatherData.main.temp + "°F";
             humidityEl.textContent = "Humidity: " + weatherData.main.humidity + "%";
             windSpeedEl.textContent = "Wind Speed: " + weatherData.wind.speed + " mph";
