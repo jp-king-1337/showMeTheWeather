@@ -83,8 +83,8 @@ function addToSearchHistory(city) {
 }
 
 
-function fetchForecastData(city) {
-    fetch(forecastUrl)
+function fetchForecastData(url) {
+    fetch(url)
         .then(function (res) {
             return res.json();
         })
@@ -94,25 +94,35 @@ function fetchForecastData(city) {
             forecastContainerEl.innerHTML = "";
 
             var forecastEntries = forecastData.list.slice(0, 5);
-            var filteredForecastsByNoon = forecastEntries.filter(function (forecastentry) {
-                return forecastentry.dt_txt.includes("12:00:00")
+            var filteredForecastsByNoon = forecastEntries.filter(function (forecastEntry) {
+                return forecastEntry.dt_txt.includes("12:00:00")
             });
-            
-            filteredForecastsByNoon.forEach(function (forecastEntry) {
-                var forecastDate = dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY");
-                var forecastIcon = forecastEntry.weather[0].icon;
-                var forecastTemperature = forecastEntry.main.temp;
-                var forecastWindSpeed = forecastEntry.wind.speed;
-                var forecastHumidity = forecastEntry.main.humidity;
+
+            var nextFiveDays = filteredForecastsByNoon.slice(0, 5).map(function (forecastEntry) {
+                return {
+                    date: dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY"),
+                    icon: forecastEntry.weather[0].icon,
+                    temperature: forecastEntry.main.temp,
+                    windSpeed: forecastEntry.wind.speed,
+                    humidity: forecastEntry.main.humidity
+                };
+            });
+
+            nextFiveDays.forEach(function (forecastEntry) {
+                // var forecastDate = dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY");
+                // var forecastIcon = forecastEntry.weather[0].icon;
+                // var forecastTemperature = forecastEntry.main.temp;
+                // var forecastWindSpeed = forecastEntry.wind.speed;
+                // var forecastHumidity = forecastEntry.main.humidity;
 
                 var forecastItem = document.createElement("div");
                 forecastItem.className = "forecast-item";
                 forecastItem.innerHTML = `
-                    <div>Date: ${forecastDate}</div>
-                    <div><img src="https://openweathermap.org/img/w/${forecastIcon}.png" alt="Weather Icon"></div>
-                    <div>Temperature: ${forecastTemperature}°F</div>
-                    <div>Wind Speed: ${forecastWindSpeed} mph</div>
-                    <div>Humidity: ${forecastHumidity}%</div>`;
+                    <div>Date: ${forecastEntry.date}</div>
+                    <div><img src="https://openweathermap.org/img/w/${forecastEntry.icon}.png" alt="Weather Icon"></div>
+                    <div>Temperature: ${forecastEntry.temperature}°F</div>
+                    <div>Wind Speed: ${forecastEntry.windSpeed} mph</div>
+                    <div>Humidity: ${forecastEntry.humidity}%</div>`;
 
                 forecastContainerEl.appendChild(forecastItem);
             });
