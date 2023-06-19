@@ -3,7 +3,7 @@ var weatherKey = "930b816eb4fa5606fcbc2d95d44231f2";
 var url;
 var forecastUrl;
 
-// Variables for necessary elements
+// Element variables
 var searchForm = document.getElementById("searchForm");
 var cityInput = document.getElementById("cityInput");
 var cityNameEl = document.getElementById("cityName");
@@ -12,20 +12,15 @@ var weatherIconEl = document.getElementById("weatherIcon");
 var temperatureEl = document.getElementById("temperature");
 var humidityEl = document.getElementById("humidity");
 var windSpeedEl = document.getElementById("windSpeed");
-// Also container to hold forecast
 var forecastContainerEl = document.getElementById("forecastContainer");
 
-// Need the searchHistory to be an array
+// Need the searchHistory to be an array which can be saved to localStorage
 var searchHistoryArray = [];
-
-// In order to use it in localStorage
 var savedSearchHistory = localStorage.getItem("searchHistoryArray");
 if (savedSearchHistory) {
     searchHistoryArray = JSON.parse(savedSearchHistory);
     displaySearchHistory();
 }
-
-
 
 searchForm.addEventListener("submit", formSubmit);
 
