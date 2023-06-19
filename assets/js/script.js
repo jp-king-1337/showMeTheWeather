@@ -19,36 +19,6 @@ var forecastEl = document.getElementById("forecast");
 searchForm.addEventListener("submit", formSubmit);
 
 
-// fetch(url)
-//     .then(function (res) {
-//         return res.json();
-//     })
-//     .then(function (weatherData) {
-//         console.log("weatherTest: ", weatherData);
-
-//         // Placeholder numbers until I get the whole array of 40 or whatever
-//         var forecast = weatherData.list.slice(0, 5);
-
-//         forecast.forEach(function (forecast) {
-//             var date = forecastEntry.dt_txt;
-//             var icon = forecastEntry.weather[0].icon;
-//             var temperature = forecastEntry.main.temp;
-//             var windSpeed = forecastEntry.wind.windSpeed;
-//             var humidity = forecastEntry.main.humidity;
-
-//             console.log("Date: ", date);
-//             console.log("Icon: ", icon);
-//             console.log("Temperature: ", temperature);
-//             console.log("Wind Speed: ", windSpeed);
-//             console.log("Humidity: ", humidity);
-//         });
-//     })
-//     .catch(function (error) {
-//         console.log(error);
-//     });
-
-// Function to fetch data based on city
-
 function getCurrentDate() {
     return dayjs().format("DD/MM/YYYY");
 }
