@@ -94,19 +94,37 @@ function fetchForecastData(url) {
             forecastContainerEl.innerHTML = "";
 
             var forecastEntries = forecastData.list.slice(0, 5);
-            var filteredForecastsByNoon = forecastEntries.filter(function (forecastEntry) {
-                return forecastEntry.dt_txt.includes("12:00:00")
-            });
+            // var filteredForecastsByNoon = forecastEntries.filter(function (forecastEntry) {
+            //     return forecastEntry.dt_txt.includes("12:00:00")
+            // });
 
-            var nextFiveDays = filteredForecastsByNoon.slice(0, 5).map(function (forecastEntry) {
-                return {
-                    date: dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY"),
-                    icon: forecastEntry.weather[0].icon,
-                    temperature: forecastEntry.main.temp,
-                    windSpeed: forecastEntry.wind.speed,
-                    humidity: forecastEntry.main.humidity
-                };
-            });
+            var nextFiveDays = [];
+
+            for (var i = 0; i < forecastEntries.length; i += 8) {
+                var forecastEntry = forecastEntries[i];
+                var forecastTime = forecastEntry.dt_txt.split(" ")[1];
+
+                if (forecastTime === "12:00:00") {
+                    var forecastItem = {
+                        date: dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY"),
+                        icon: forecastEntry.weather[0].icon,
+                        temperature: forecastEntry.main.temp,
+                        windSpeed: forecastEntry.wind.speed,
+                        humidity: forecastEntry.main.humidity
+                    };
+                    nextFiveDays.push(forecastItem);
+                }
+            }
+
+            // filteredForecastsByNoon.slice(0, 5).map(function (forecastEntry) {
+            //     return {
+            //         date: dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY"),
+            //         icon: forecastEntry.weather[0].icon,
+            //         temperature: forecastEntry.main.temp,
+            //         windSpeed: forecastEntry.wind.speed,
+            //         humidity: forecastEntry.main.humidity
+            //     };
+            // });
 
             nextFiveDays.forEach(function (forecastEntry) {
                 // var forecastDate = dayjs(forecastEntry.dt_txt).format("DD/MM/YYYY");
