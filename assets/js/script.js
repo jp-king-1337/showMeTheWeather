@@ -50,8 +50,9 @@ var forecastEl = document.getElementById("forecast");
 // Function to fetch data based on city
 
 function getCurrentDate() {
-    return dayjs().format("MM/DD/YYYY");
-  }
+    return dayjs().format("DD/MM/YYYY");
+}
+
 
 function fetchWeatherData(city) {
     fetch(url)
@@ -76,6 +77,7 @@ function fetchWeatherData(city) {
             console.log(error);
         });
 }
+
 
 function fetchForecastData(city) {
     fetch(forecastUrl)
@@ -125,4 +127,5 @@ function formSubmit(event) {
 
 
 
-fetchWeatherData();
+
+fetchWeatherData(Chicago);
