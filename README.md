@@ -32,6 +32,8 @@ This project is to be graded as part of my participation in the Rutgers Coding B
 
 ## Credits
 
+I turned to ChatGPT for assistance debugging a few times. The biggest help was with my fetchForecastData function on script.js line 81. It helped me massively with figuring out why I couldn't get the 5-day forecast to display more than one day.
+It also helped with setting up the CSS like I wanted it to be for the forecast and with making a responsive layout.
 
 
 ## License

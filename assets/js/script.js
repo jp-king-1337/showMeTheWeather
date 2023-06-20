@@ -1,9 +1,9 @@
-// Add the API
+// API
 var weatherKey = "930b816eb4fa5606fcbc2d95d44231f2";
 var url;
 var forecastUrl;
 
-// Element variables
+// HTML element variables
 var searchForm = document.getElementById("searchForm");
 var cityInput = document.getElementById("cityInput");
 var cityNameEl = document.getElementById("cityName");
@@ -14,7 +14,7 @@ var humidityEl = document.getElementById("humidity");
 var windSpeedEl = document.getElementById("windSpeed");
 var forecastContainerEl = document.getElementById("forecastContainer");
 
-// Need the searchHistory to be an array which can be saved to localStorage
+// searchHistory variables
 var searchHistoryArray = [];
 var savedSearchHistory = localStorage.getItem("searchHistoryArray");
 if (savedSearchHistory) {
@@ -84,13 +84,9 @@ function fetchForecastData(url) {
             return res.json();
         })
         .then(function (forecastData) {
-            // console.log("forecastData: ", forecastData);
-
             forecastContainerEl.innerHTML = "";
-            // THIS IS THE MAJOR CHANGE
             var forecastEntries = forecastData.list
             var nextFiveDays = [];
-
             var currentDate = dayjs().format("YYYY-MM-DD");
             var forecastDates = []
 
