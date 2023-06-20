@@ -26,11 +26,6 @@ header {
     text-align: center;
 }
 
-/* Not sure I want this. */
-/* h1 {
-    font-size: 28px;
-} */
-
 
 /* SEARCH CONTAINER */
 #searchContainer {
@@ -101,7 +96,6 @@ header {
 #windSpeed {
     margin-top: 10px;
 }
-
 
 
 /* FORECAST */
