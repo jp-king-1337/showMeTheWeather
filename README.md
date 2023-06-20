@@ -25,7 +25,9 @@ This project is to be graded as part of my participation in the Rutgers Coding B
 
 [Deployed Link](https://jp-king-1337.github.io/showMeTheWeather/)
 
-Screenshots coming soon!
+![Initial view of the app upon page load](https://github.com/jp-king-1337/showMeTheWeather/blob/main/assets/screenshots/screenshot_1initialView.png?raw=true)
+![App with one city input, showing today's weather and the 5-day forecast for Chicago](https://github.com/jp-king-1337/showMeTheWeather/blob/main/assets/screenshots/screenshot_2exampleCity.png?raw=true)
+![App with 5 cities input, showing as search history pulled from loacl storage, with no city currently displaying its weather](https://github.com/jp-king-1337/showMeTheWeather/blob/main/assets/screenshots/screenshot_3searchHistory.png?raw=true)
 
 
 ## Credits
